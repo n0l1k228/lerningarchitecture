@@ -1,9 +1,5 @@
 package dto
 
-import (
-	"context"
-)
-
 type userBase struct {
 	Name         string `json:"name" validate:"min=3,max=100"`
 	Phone_number string `json:"phone_number" validate:"omitempty,min=8,max=15,startswith=+"`
@@ -18,14 +14,15 @@ type UserResponse struct {
 	userBase
 }
 
-type UserRepository interface {
-	SaveUser(ctx context.Context, user *CreateUserRequest) error
+type ProductDTO struct {
+	ID          int    `json:"id"`
+	Title       string `json:"title"`
+	Description string `json:"description"`
+	Price       int    `json:"price"`
+	Category    string `json:"category"`
+	AuthorID    int    `json:"author_id"`
 }
 
-type ProductDTO struct {
-	id          int
-	title       string
-	description string
-	price       int
-	category    string
+type ProductSearch struct {
+	Title string `json:"title"`
 }

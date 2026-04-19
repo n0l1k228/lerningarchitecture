@@ -9,6 +9,16 @@ import (
 	"github.com/joho/godotenv"
 )
 
+type PostgresRepo struct {
+	conn *pgx.Conn
+}
+
+func NewPostgresRepo(conn *pgx.Conn) *PostgresRepo {
+	return &PostgresRepo{
+		conn: conn,
+	}
+}
+
 func ConnectDB(ctx context.Context) (*pgx.Conn, error) {
 	if err := godotenv.Load(); err != nil {
 		return nil, fmt.Errorf("failed connect db: %w", err)
